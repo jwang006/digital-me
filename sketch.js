@@ -1,96 +1,207 @@
 let  pattern;
-
+let hand;
+let button;
+let glassY = 0;
 function setup() {
 createCanvas(400, 400);
-pattern = createGraphics(400, 400);
+background(220,234,150);
+// //pattern = createGraphics(400, 400);
+hand.resize(100, 100);
+addGUI();
+
+}
+function moveGlasses(){
+
+  image(hand, 0, 200);
+  glassY = random (-5,5);
+
+}
+function preload() {
+  hand = loadImage('hand.png');
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+function addGUI()
+{
+
+  //add a button
+  button = createButton("hey");
+  
+  button.addClass("button");
+  //Adding a mouse pressed event listener to the button 
+  button.mousePressed(moveGlasses); 
+
 }
 
 function draw() {
-background(220,234,150);
+  drawMy();
+}
+function drawMy () {
+//my head;
+stroke(232,154,98);
+strokeWeight(3);
+noFill();
 
-  //my head;
-  stroke(232,154,98);
-  strokeWeight(3);
-  noFill();
+angleMode(DEGREES);
+rotate(20);
+ellipse(230,110,220,258);
 
+angleMode(DEGREES);
+rotate(-6);
+noStroke();
+fill(206,162,162);
+ellipse(220,133,210,252);
+
+//re-rotate;
+angleMode(DEGREES);
+rotate(-14);
+
+
+myEyes();
+push ();
+translate (0,glassY);
+myGlasses();
+pop ();
+//my dark circle;
+noFill();
+stroke(0,255,120,80);
+strokeWeight(7);
+curve(100,130,110,180,130,175,150,135);
+//X+110;
+curve(210,115,220,175,240,180,260,150);
+
+//MY MOUSE;
+fill(255,180,100,100);
+noStroke();
+ellipse(170,260,50,25);
+
+
+fill(255,128,0,200);
+noStroke();
+circle(160,260,20,20);
+circle(175,258,20,20);
+
+
+ //MY noise;
+  fill(190,130,80,100);
   angleMode(DEGREES);
-  rotate(20);
-  ellipse(230,110,220,258);
-  
-  angleMode(DEGREES);
-  rotate(-6);
+  rotate(25);
   noStroke();
-  fill(206,162,162);
-  ellipse(220,133,210,252);
-
-  //re-rotate;
+  ellipse(220,130,15,30);
+  rotate(-50);
+  ellipse(90,275,15,30);
+  
+ //re-rotate;
   angleMode(DEGREES);
-  rotate(-14);
+  rotate(25);
 
-  //eyebrows;
-  noFill();
-  stroke(0,100);
-  strokeWeight(4);
-  beginShape();
-  vertex(90,150);
-  bezierVertex(100,145,120,145,140,160);
-  endShape();
+ //my hair;
+ noFill();
+ stroke(255);
+ strokeWeight(3);
 
-  beginShape();
-  vertex(200,160);
-  bezierVertex(210,145,235,145,255,150);
-  endShape();
+ bezier(0,100,300,0,200,200,400,100);
+ bezier(0,350,260,0,300,400,400,0);
+ bezier(150,0,50,200,380,0,180,400);
+ bezier(0,280,400,300,0,320,400,400);
+ bezier(300,0,400,300,100,120,200,400);
+ bezier(300,0,400,300,100,120,200,400);
+ bezier(50,50,150,45,150,380,150,380);
+ bezier(150,50,250,60,50,380,2000,200);
 
 
-  // my eyes-LEFT;
+
+   //cut the rest of hairs;
+   pattern.beginShape();
+   pattern.background(220,234,150);
+   pattern.noStroke();
+   pattern.fill(220,234,150);
+   pattern.rect(0,0,400,400);
+   pattern.erase(0, 255);
+   pattern.noStroke();
+   pattern.fill(206,162,162);
+   pattern.angleMode(DEGREES);
+   pattern.rotate(14)
+   noLoop();
+   pattern.ellipse(220,133,210,252);
+   pattern.noErase();
+
+   pattern.stroke(232,154,98);
+   pattern.strokeWeight(3);
+   pattern.noFill();
+   pattern.angleMode(DEGREES);
+   pattern.rotate(6);
+   pattern.ellipse(230,110,220,258);
+   //image(pattern,0,0);
+  
+}
+function myEyes() {
+//eyebrows;
+noFill();
+stroke(0,100);
+strokeWeight(4);
+beginShape();
+vertex(90,150);
+bezierVertex(100,145,120,145,140,160);
+endShape();
+
+beginShape();
+vertex(200,160);
+bezierVertex(210,145,235,145,255,150);
+endShape();
+// my eyes-LEFT;
+noFill();
+stroke(0);
+strokeWeight(2);
+beginShape();
+vertex(90,170);
+bezierVertex(100,165,130,165,140,170);
+endShape();
+
+beginShape();
+vertex(100,170);
+bezierVertex(110,170,130,165,140,170);
+endShape();
+
+beginShape();
+vertex(100,170);
+bezierVertex(110,170,125,170,130,175);
+endShape();
+
+noFill();
+stroke(0);
+strokeWeight(3);
+ellipse(120,170,10,5);
+
+  // my eyes-RIGHT;,X+110;
   noFill();
   stroke(0);
   strokeWeight(2);
   beginShape();
-  vertex(90,170);
-  bezierVertex(100,165,130,165,140,170);
+  vertex(200,170);
+  bezierVertex(210,165,240,165,250,170);
   endShape();
 
   beginShape();
-  vertex(100,170);
-  bezierVertex(110,170,130,165,140,170);
+  vertex(210,170);
+  bezierVertex(220,170,240,165,250,170);
   endShape();
 
   beginShape();
-  vertex(100,170);
-  bezierVertex(110,170,125,170,130,175);
+  vertex(210,170);
+  bezierVertex(220,170,235,170,220,175);
   endShape();
  
   noFill();
   stroke(0);
   strokeWeight(3);
-  ellipse(120,170,10,5);
-
-    // my eyes-RIGHT;,X+110;
-    noFill();
-    stroke(0);
-    strokeWeight(2);
-    beginShape();
-    vertex(200,170);
-    bezierVertex(210,165,240,165,250,170);
-    endShape();
-  
-    beginShape();
-    vertex(210,170);
-    bezierVertex(220,170,240,165,250,170);
-    endShape();
-  
-    beginShape();
-    vertex(210,170);
-    bezierVertex(220,170,235,170,220,175);
-    endShape();
-   
-    noFill();
-    stroke(0);
-    strokeWeight(3);
-    ellipse(230,170,10,5);
-
-//shade of glassed;
+  ellipse(230,170,10,5);
+}
+function myGlasses() {
+  //shade of glassed;
 fill(240,140,40,80);
 noStroke();
 beginShape();
@@ -138,7 +249,6 @@ endShape();
 
   //my glass-white;
   //should let X1,X2,X3,X4,Y1,Y2,Y3,Y4;
-
   noFill();
   strokeWeight(6);
   strokeJoin(ROUND);
@@ -146,74 +256,4 @@ endShape();
   quad(55,152,154,150,145,230,80,226);
   quad(185,150,274,144,270,218,195,228);
   line(154,170,185,170);
-
-  //my dark circle;
-  noFill();
-  stroke(0,255,120,80);
-  strokeWeight(7);
-  curve(100,130,110,180,130,175,150,135);
-  //X+110;
-  curve(210,115,220,175,240,180,260,150);
-
-  //MY MOUSE;
-  fill(255,180,100,100);
-  noStroke();
-  ellipse(170,260,50,25);
-  
-  
-  fill(255,128,0,200);
-  noStroke();
-  circle(160,260,20,20);
-  circle(175,258,20,20);
-
-
-   //MY noise;
-    fill(190,130,80,100);
-    angleMode(DEGREES);
-    rotate(25);
-    noStroke();
-    ellipse(220,130,15,30);
-    rotate(-50);
-    ellipse(90,275,15,30);
-    
-   //re-rotate;
-    angleMode(DEGREES);
-    rotate(25);
-
-   //my hair;
-   noFill();
-   stroke(255);
-   strokeWeight(3);
-
-   bezier(0,100,300,0,200,200,400,100);
-   bezier(0,350,260,0,300,400,400,0);
-   bezier(150,0,50,200,380,0,180,400);
-   bezier(0,280,400,300,0,320,400,400);
-   bezier(300,0,400,300,100,120,200,400);
-   bezier(300,0,400,300,100,120,200,400);
-   bezier(50,50,150,45,150,380,150,380);
-   bezier(150,50,250,60,50,380,2000,200);
-
-     //cut the rest of hairs;
-     pattern.beginShape();
-     pattern.background(220,234,150);
-     pattern.noStroke();
-     pattern.fill(220,234,150);
-     pattern.rect(0,0,400,400);
-     pattern.erase(0, 255);
-     pattern.noStroke();
-     pattern.fill(206,162,162);
-     pattern.angleMode(DEGREES);
-     pattern.rotate(14)
-     noLoop();
-     pattern.ellipse(220,133,210,252);
-     pattern.noErase();
-
-     pattern.stroke(232,154,98);
-     pattern.strokeWeight(3);
-     pattern.noFill();
-     pattern.angleMode(DEGREES);
-     pattern.rotate(6);
-     pattern.ellipse(230,110,220,258);
-     image(pattern,0,0);
 }

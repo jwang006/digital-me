@@ -1,7 +1,11 @@
 html, body {
-  margin: 0;
-  padding: 0;
+  margin: 100;
+  padding: 20;
 }
 canvas {
   display: block;
 }
+@media screen and (max-width: 600px) {
+  body {
+    color: blue;
+} }
