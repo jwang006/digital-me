@@ -4,7 +4,8 @@ let hand;
 let button;
 let glassY = 0;
 let handY = 210;
-let ask = 0;
+let thinking = false;
+
 function setup() {
   canvas = createCanvas(400, 400);
   canvas.parent("sketch-container"); 
@@ -15,21 +16,30 @@ function preload() {
   hand = loadImage('hand.png');
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }
 
 function addGUI() {
-  button = createButton("hey");
+  button = createButton("How?");
   button.addClass("button");
   button.parent("gui-container");
+  button.position(10,410);
   button.mousePressed(handleButtonPress);
 }
 
 function handleButtonPress() {
+ if (!thinking) {
+  thinking = true;
   glassY = random (-15,-8);
   handY = random (180,210);
   console.log("Pressed");
+  button.html("Thinking");
+
+  button.addClass("inactive");
+ }
+  
+
 }
 
 function moveglasses() {
@@ -49,6 +59,11 @@ function draw() {
 
   if (handY < 210 || glassY < 0) {
     moveglasses();
+  }
+  else {
+    thinking = false;
+    button.html("How?");
+    button.removeClass("inactive");
   }
 }
 function drawMy () {
