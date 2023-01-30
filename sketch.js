@@ -1,20 +1,15 @@
-let  pattern;
+
+let canvas;
 let hand;
 let button;
 let glassY = 0;
+let handY = 210;
+let ask = 0;
 function setup() {
-createCanvas(400, 400);
-background(220,234,150);
-// //pattern = createGraphics(400, 400);
-hand.resize(100, 100);
-addGUI();
-
-}
-function moveGlasses(){
-
-  image(hand, 0, 200);
-  glassY = random (-5,5);
-
+  canvas = createCanvas(400, 400);
+  canvas.parent("sketch-container"); 
+  hand.resize(100, 100);
+  addGUI();
 }
 function preload() {
   hand = loadImage('hand.png');
@@ -24,20 +19,37 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-function addGUI()
-{
-
-  //add a button
+function addGUI() {
   button = createButton("hey");
-  
   button.addClass("button");
-  //Adding a mouse pressed event listener to the button 
-  button.mousePressed(moveGlasses); 
+  button.parent("gui-container");
+  button.mousePressed(handleButtonPress);
+}
 
+function handleButtonPress() {
+  glassY = random (-15,-8);
+  handY = random (180,210);
+  console.log("Pressed");
+}
+
+function moveglasses() {
+  handY ++;
+  glassY++;
 }
 
 function draw() {
+  background(220,234,150);
+  //background(255);
   drawMy();
+  push ();
+  translate (0, glassY);
+  myGlasses();
+  pop ();
+  image(hand, 0, handY);
+
+  if (handY < 210 || glassY < 0) {
+    moveglasses();
+  }
 }
 function drawMy () {
 //my head;
@@ -61,10 +73,11 @@ rotate(-14);
 
 
 myEyes();
-push ();
-translate (0,glassY);
-myGlasses();
-pop ();
+// push ();
+// translate (0,glassY);
+// myGlasses();
+// pop ();
+
 //my dark circle;
 noFill();
 stroke(0,255,120,80);
@@ -111,32 +124,6 @@ circle(175,258,20,20);
  bezier(300,0,400,300,100,120,200,400);
  bezier(50,50,150,45,150,380,150,380);
  bezier(150,50,250,60,50,380,2000,200);
-
-
-
-   //cut the rest of hairs;
-   pattern.beginShape();
-   pattern.background(220,234,150);
-   pattern.noStroke();
-   pattern.fill(220,234,150);
-   pattern.rect(0,0,400,400);
-   pattern.erase(0, 255);
-   pattern.noStroke();
-   pattern.fill(206,162,162);
-   pattern.angleMode(DEGREES);
-   pattern.rotate(14)
-   noLoop();
-   pattern.ellipse(220,133,210,252);
-   pattern.noErase();
-
-   pattern.stroke(232,154,98);
-   pattern.strokeWeight(3);
-   pattern.noFill();
-   pattern.angleMode(DEGREES);
-   pattern.rotate(6);
-   pattern.ellipse(230,110,220,258);
-   //image(pattern,0,0);
-  
 }
 function myEyes() {
 //eyebrows;

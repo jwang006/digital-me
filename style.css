@@ -5,7 +5,21 @@ html, body {
 canvas {
   display: block;
 }
-@media screen and (max-width: 600px) {
-  body {
-    color: blue;
-} }
+.button{
+  background-color: #f6d781;
+  border: solid 0px ;
+  border-radius: 5px;
+  color: white;
+  padding:10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin:0 auto;
+  font-size: 16px;
+  min-width: 50px;
+  cursor: pointer;
+}
+.button:hover{
+  background-color:white;
+  color: #371bd3;
+}
