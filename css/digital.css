@@ -15,9 +15,15 @@ html, body {
     /* This centers our sketch vertically. */
     align-items: center;
   }
+  main{
+    margin-right: 10px;
+  }
   a{
     text-align: center;
   }
+  /* p{
+    text-align: center;
+  } */
   #gui-container{
     width: 100%;
     margin: 10px 0;
@@ -35,9 +41,9 @@ html, body {
     padding:10px 10px;
     text-align: center;
     text-decoration: none;
-    display: block;
-    /* margin: 20px;; */
-    margin-right: 0;
+    display: flex;
+    /* margin: 80%;; */
+    margin-right: auto; 
     font-size: 16px;
     min-width: 50px;
     cursor: pointer;

@@ -58,7 +58,7 @@ function draw() {
   }
   else {
     thinking = false;
-    button.html("How?");
+    button.html("Why?");
     button.removeClass("inactive");
   }
 }
