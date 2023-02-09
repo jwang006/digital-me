@@ -13,18 +13,14 @@ function setup() {
   addGUI();
 }
 function preload() {
-  hand = loadImage('hand.png');
+  hand = loadImage('assets/images/hand.png');
 }
-
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-// }
 
 function addGUI() {
   button = createButton("How?");
   button.addClass("button");
   button.parent("gui-container");
-  button.position(10,410);
+  // button.position(10,410);
   button.mousePressed(handleButtonPress);
 }
 
@@ -48,8 +44,8 @@ function moveglasses() {
 }
 
 function draw() {
-  background(220,234,150);
-  //background(255);
+  //background(220,234,150,100);
+  background(255,250,200);
   drawMy();
   push ();
   translate (0, glassY);
